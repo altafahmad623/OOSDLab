@@ -1,0 +1,55 @@
+The email ids of TAs of this course are: Surajit - surajitb@iitkgp.ac.in
+ 
+Sanjolly: sanjollygupta49@iitkgp.ac.in
+ 
+Sanjoy: sm53@iitkgp.ac.in
+
+If the last two digits of your roll number
+ leave remainder 0 mod 3, you email Surajit,
+  if they leave remained 1 mod 3 you email
+   Sanjolly, and for remainder 2 mod 3,
+    you email Sanjoy.
+Start the email subject with 
+OOSD_2020 : Lab Assignment 1.
+For a number n, count the number of primes from 1 to number
+
+For a number n, count the number of primes from 1 to n. Code should be efficient, and all parts should be well explained in comments.
+
+
+#include <iostream>
+using namespace std;
+int isNoPrime(int n)
+{
+    int t=0,i;
+    for ( i = 2; i*i <= n ; i++)
+    {
+        if(n%i==0)
+        {
+            t++;
+            break;
+        }
+    }
+    if(t)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+int main()
+{
+    int i,n,t=0;
+    cin>>n;
+    for ( i = 2; i <= n; i++)
+    {
+        if (isNoPrime(i))
+        {
+            cout<<i<<" is Prime\n";
+        }
+        
+    }
+    
+    return 0;
+}
