@@ -1,3 +1,15 @@
+/*
+By: Altaf Ahmad
+Roll no: 18MA20005
+
+Implementation of an automatic Tic Tac Toe player that can never lose. Matches can be drawn but computer never loses.
+
+I have mapped the moves that the computer will make into numbers that can be stored in arrays. Now, in order to apply those moves, I have created some helper functions,
+which will follow that particular set of moves.
+At some points, the computer outputs "It's a Draw" even when there are several moves left. This is because the result doesn't depend on the input of the user after that state.
+That means, whatever input the user will give, it will lead to a draw, so, the system prunes the entire steps and just declares the result.
+
+*/
 #include <iostream>
 using namespace std;
 void showTic(int a[])
@@ -543,7 +555,6 @@ void playgame()
     {
         a[i] = 5;
     }
-    //showTic(a);
     cout << "Instructions: Enter numbers from 0 to 8 to insert your symbols in the designated place. Like shown below: \n";
     cout << "-------------\n";
     for (int i = 0; i < 3; i++)
@@ -579,6 +590,5 @@ int main()
         cout << "Play Again - 1 , Exit - 0\n";
         cin >> i;
     }
-
     return 0;
 }
