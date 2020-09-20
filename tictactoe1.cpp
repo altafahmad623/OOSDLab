@@ -199,7 +199,7 @@ void comp1(int a[], int sy)
         }
         else if (k == 7)
         {
-            hel_comp2(a, sy, 7, 6, 2, 5, 3, k, sc);
+            hel_comp2(a, sy, 1, 2,6,3,5, k, sc);
         }
         break;
     case 5:
@@ -345,6 +345,12 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
             cout << "Computer Won\n";
         }
     }
+    else if(k==b[4])
+    {
+        a[b[6]] = sc; //11
+        showTic(a);
+        cout << "It's a Draw:\n";
+    }
     else
     {
         a[b[11]] = sc; //11
@@ -413,7 +419,7 @@ void comp2_top(int a[], int sy, int dig[], int k, int sc, int col[])
     }
     else
     {
-        comp_middle2(a, sy, dig[28], dig[29], dig[30], k, sc);
+        hel_comp2(a,sy,dig[28], dig[29], dig[30], dig[31], dig[32], k, sc);
     }
 }
 void comp2(int a[], int sy)
@@ -476,25 +482,25 @@ void comp2(int a[], int sy)
         showTic(a);
         if (k == 1)
         {
-            int dig[] = {2, 6, 3, 5, 8, 0, 8, 5, 3, 6, 0, 8, 6, 2, 5, 2, 6, 8, 0, 3, 0, 8, 7, 3, 5, 6, 2, 0, 3, 6, 7};
+            int dig[] = {2, 6, 3, 5, 8, 0, 8, 5, 3, 6, 0, 8, 6, 2, 5, 2, 6, 8, 0, 3, 0, 8, 7, 3, 5, 6, 2, 0, 3,5,2,6,7};
             int col[] = {0, 2, 3, 5, 6, 7, 8};
             comp2_top(a, sy, dig, k, sc, col);
         }
         else if (k == 5)
         {
-            int dig[] = {8, 0, 1, 7, 6, 2, 6, 7, 1, 0, 2, 6, 0, 8, 7, 8, 0, 6, 2, 1, 2, 6, 3, 1, 7, 0, 8, 2, 1, 0, 3};
+            int dig[] = {8, 0, 1, 7, 6, 2, 6, 7, 1, 0, 2, 6, 0, 8, 7, 8, 0, 6, 2, 1, 2, 6, 3, 1, 7, 0, 8, 2, 1, 7, 8,0,3};
             int col[] = {2, 8, 1, 7, 0, 3, 6};
             comp2_top(a, sy, dig, k, sc, col);
         }
         else if (k == 7)
         {
-            int dig[] = {6, 2, 5, 3, 0, 8, 0, 3, 5, 2, 8, 0, 2, 6, 3, 6, 2, 0, 8, 5, 8, 0, 1, 5, 3, 2, 6, 8, 5, 2, 1};
+            int dig[] = {6, 2, 5, 3, 0, 8, 0, 3, 5, 2, 8, 0, 2, 6, 3, 6, 2, 0, 8, 5, 8, 0, 1, 5, 3, 2, 6, 8, 5, 3,6,2,1};
             int col[] = {8, 6, 5, 3, 2, 1, 0};
             comp2_top(a, sy, dig, k, sc, col);
         }
         else
         {
-            int dig[] = {0, 8, 7, 1, 2, 6, 2, 1, 7, 8, 6, 2, 8, 0, 1, 0, 8, 2, 6, 7, 6, 2, 5, 7, 1, 8, 0, 6, 7, 8, 5};
+            int dig[] = {0, 8, 7, 1, 2, 6, 2, 1, 7, 8, 6, 2, 8, 0, 1, 0, 8, 2, 6, 7, 6, 2, 5, 7, 1, 8, 0, 6, 7, 1,0,8,5};
             int col[] = {6, 0, 7, 1, 8, 5, 2};
             comp2_top(a, sy, dig, k, sc, col);
         }
