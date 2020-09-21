@@ -6,12 +6,10 @@ Implementation of an automatic Tic Tac Toe player that can never lose. Matches c
 
 I have mapped the moves that the computer will make into numbers that can be stored in arrays. Now, in order to apply those moves, I have created some helper functions,
 which will follow that particular set of moves.
-
-
 */
 #include <iostream>
 using namespace std;
-void showTic(int a[])
+void showTic(int a[]) // displays the tic tac toe after each input
 {
     cout << "-------------\n";
     for (int i = 0; i < 3; i++)
@@ -36,12 +34,12 @@ void showTic(int a[])
         cout << "-------------\n";
     }
 }
-void hel_comp1(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc)
+void hel_comp1(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc) // This helper function looks at the cases when the user doesn't enter in the middle row middle column
 {
-    a[k] = sy;
-    a[x] = sc;
-    showTic(a);
-    cout << "Your Turn\n";
+    a[k] = sy;  //This stores the move of the user
+    a[x] = sc;  //This is the computer's move decided by the variable x that is entered according to the most efficient way to win
+    showTic(a);     //This outputs the Board after each round
+    cout << "Your Turn\n";  
     cin >> k;
     k--;
     while (a[k] != 5)
@@ -50,10 +48,10 @@ void hel_comp1(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
         cin >> k;
         k--;
     }
-    a[k] = sy;
-    if (k == y)
+    a[k] = sy;//This stores the move of the user
+    if (k == y) //after the user gives his move, computer then plays the most efficient moves according to the input provided
     {
-        a[z] = sc;
+        a[z] = sc; // computer's move decided by the variable z that is entered according to the most efficient way to win
         showTic(a);
         cout << "Your Turn\n";
         cin >> k;
@@ -161,25 +159,25 @@ void hel_comp3(int a[], int sy, int x, int y, int z, int k, int sc)
         cout << "Computer Won\n";
     }
 }
-void comp1(int a[], int sy)
+void comp1(int a[], int sy) // this function operates when the user plays 2nd as Player 2. That means the computer makes the first move
 {
-    int sc = 1 - sy;
+    int sc = 1 - sy; // sc and sy stores the values to show X and O in the output
     int k;
-    a[0] = sc;
+    a[0] = sc; // This is the first move be the computer. It is the one in which there is maximum probability of winning. If the user doen't enter 5 after this, then the shall definitely lose
     showTic(a);
     cout << "Your Turn\n";
     cin >> k;
     k--;
     while (a[k] != 5)
     {
-        cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
+        cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n"; // checks if the input is not out of bounds
         cin >> k;
         k--;
     }
-    switch (k)
+    switch (k) // Here, there are 8 ways in which the user can input the 
     {
     case 1:
-        hel_comp1(a, sy, 6, 3, 4, 8, 2, k, sc); //done
+        hel_comp1(a, sy, 6, 3, 4, 8, 2, k, sc); // Here, the numbers signify a particular set of steps this helper function hel_comp1() will perform
         break;
     case 2:
         hel_comp1(a, sy, 6, 3, 8, 7, 4, k, sc); //done
@@ -246,7 +244,6 @@ void comp1(int a[], int sy)
 }
 void comp2_diag(int a[], int sy, int x, int y, int z, int p,int q,int k, int sc)
 {
-    //cout<<"p is "<<p<<" , q is "<<q;
     a[x] = sc;
     showTic(a);
     cout << "Your Turn:\n";
@@ -276,26 +273,21 @@ void comp2_diag(int a[], int sy, int x, int y, int z, int p,int q,int k, int sc)
         if(k==p)//1st number
         {
             a[q]=sc;
-            //cout<<q<<endl;
             showTic(a);
             cout << "It's a Draw:\n";
         }
         else if (k==q)
         {
             a[p]=sc;
-            //cout<<p<<endl;
             showTic(a);
             cout << "It's a Draw:\n";
         }
         else
         {
             a[q]=sc;
-            //cout<<q<<endl;
             showTic(a);
             cout << "It's a Draw:\n";
         }
-        
-        //cout << "It's a Draw:\n";
     }
     else
     {
@@ -330,7 +322,6 @@ void comp2_diag2(int a[], int sy, int dig[], int k, int sc, int col[])
     }
     else if (k == col[3]) //different
     {
-        //cout<<"this is being executed with p = "<<dig[18]<<"and q = "<<dig[19]<<"\n";
         comp2_diag(a, sy, dig[15], dig[16], dig[17],dig[18], dig[19], k, sc);
     }
     else if (k == col[4])
@@ -360,7 +351,7 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
         k--;
     }
     a[k] = sy;
-    if (k == b[1]) //1
+    if (k == b[1]) //2
     {
         a[b[2]] = sc; //2
         showTic(a);
@@ -387,7 +378,7 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
             cout << "Computer Won\n";
         }
     }
-    else if (k == b[7]) //7
+    else if (k == b[7]) //5
     {
         a[b[8]] = sc; //8
         showTic(a);
@@ -414,18 +405,88 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
             cout << "Computer Won\n";
         }
     }
-    else if (k == b[4])
+    else if (k == b[4])//3
     {
         a[b[6]] = sc; //11
         showTic(a);
-        cout << "It's a Draw:\n";
+        cout << "Your Turn:\n";
+        cin >> k;
+        k--;
+        while (a[k] != 5)
+        {
+            cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
+            cin >> k;
+            k--;
+        }
+        a[k] = sy;
+        if(k == b[1] )
+        {
+            a[b[9]] = sc;
+            showTic(a);
+            cout << "It's a Draw:\n";            
+        }
+        else
+        {
+            a[b[1]] = sc;
+            showTic(a);
+            cout << "It's a Draw:\n";  
+        }
     }
-    else
+    else if (k == b[9]) // 6
     {
         a[b[11]] = sc; //11
         showTic(a);
-        cout << "It's a Draw:\n";
+        cout << "Your Turn:\n";
+        cin >> k;
+        k--;
+        while (a[k] != 5)
+        {
+            cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
+            cin >> k;
+            k--;
+        }
+        a[k] = sy;
+        if(k == b[4] )
+        {
+            a[b[6]] = sc;
+            showTic(a);
+            cout << "It's a Draw:\n";            
+        }
+        else
+        {
+            a[b[4]] = sc;
+            showTic(a);
+            cout << "It's a Draw:\n";  
+        }   
     }
+    else//8
+    {
+        a[b[4]] = sc; //11
+        showTic(a);
+        cout << "Your Turn:\n";
+        cin >> k;
+        k--;
+        while (a[k] != 5)
+        {
+            cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
+            cin >> k;
+            k--;
+        }
+        a[k] = sy;
+        if(k == b[2] )
+        {
+            a[b[1]] = sc;
+            showTic(a);
+            cout << "It's a Draw:\n";            
+        }
+        else
+        {
+            a[b[2]] = sc;
+            showTic(a);
+            cout << "Computer Won\n";  
+        }
+    }
+    
 }
 void comp2_top(int a[], int sy, int dig[], int k, int sc, int col[])
 {
@@ -502,7 +563,7 @@ void comp2(int a[], int sy)
         }
         else if (k == 2)
         {
-            comp2_diag(a, sy, 6, 3, 5,8,7, k, sc);
+            comp2_diag(a, sy, 6, 3, 5,1,7, k, sc);
         }
         else if (k == 3)
         {
@@ -585,7 +646,7 @@ void comp2(int a[], int sy)
         }
     }
 }
-void playgame()
+void playgame() // The main game is situated in this function. Both the cases where user plays as Player 1 and Player 2 are stated in this
 {
     int a[9];
     int i, d, sy;
@@ -616,7 +677,7 @@ void playgame()
     }
     else
     {
-        comp1(a, sy); //User plays first move
+        comp1(a, sy); //Computer plays first move
     }
 }
 int main()
@@ -624,8 +685,8 @@ int main()
     int i = 1;
     while (i)
     {
-        playgame();
-        cout << "Play Again - 1 , Exit - 0\n";
+        playgame(); //This is the main game function that runs the game
+        cout << "Play Again - 1 , Exit - 0\n"; // After one game is over, this provides the user the chance whether he wants to play another game or not, and proceed accordingly.
         cin >> i;
     }
     return 0;
