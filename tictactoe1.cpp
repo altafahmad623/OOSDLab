@@ -6,8 +6,7 @@ Implementation of an automatic Tic Tac Toe player that can never lose. Matches c
 
 I have mapped the moves that the computer will make into numbers that can be stored in arrays. Now, in order to apply those moves, I have created some helper functions,
 which will follow that particular set of moves.
-At some points, the computer outputs "It's a Draw" even when there are several moves left. This is because the result doesn't depend on the input of the user after that state.
-That means, whatever input the user will give, it will lead to a draw, so, the system prunes the entire steps and just declares the result.
+
 
 */
 #include <iostream>
@@ -43,13 +42,13 @@ void hel_comp1(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
     a[x] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == y)
@@ -57,13 +56,13 @@ void hel_comp1(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
         a[z] = sc;
         showTic(a);
         cout << "Your Turn\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k; 
-            k --;
+            cin >> k;
+            k--;
         }
         a[k] = sy;
         if (k == p)
@@ -91,13 +90,13 @@ void hel_comp2(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
     a[x] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == y)
@@ -105,13 +104,13 @@ void hel_comp2(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
         a[z] = sc;
         showTic(a);
         cout << "Your Turn\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k; 
-            k --;
+            cin >> k;
+            k--;
         }
         a[k] = sy;
         if (k == p)
@@ -140,13 +139,13 @@ void hel_comp3(int a[], int sy, int x, int y, int z, int k, int sc)
     a[x] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == y)
@@ -169,13 +168,13 @@ void comp1(int a[], int sy)
     a[0] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     switch (k)
     {
@@ -194,13 +193,13 @@ void comp1(int a[], int sy)
         a[k] = sy;
         showTic(a);
         cout << "Your Turn\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k; 
-            k --;
+            cin >> k;
+            k--;
         }
         a[k] = sy;
         if (k == 6)
@@ -225,7 +224,7 @@ void comp1(int a[], int sy)
         }
         else if (k == 7)
         {
-            hel_comp2(a, sy, 1, 2,6,3,5, k, sc);
+            hel_comp2(a, sy, 1, 2, 6, 3, 5, k, sc);
         }
         break;
     case 5:
@@ -245,25 +244,58 @@ void comp1(int a[], int sy)
         break;
     }
 }
-void comp2_diag(int a[], int sy, int x, int y, int z, int k, int sc)
+void comp2_diag(int a[], int sy, int x, int y, int z, int p,int q,int k, int sc)
 {
+    //cout<<"p is "<<p<<" , q is "<<q;
     a[x] = sc;
     showTic(a);
     cout << "Your Turn:\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == y)
     {
         a[z] = sc;
         showTic(a);
-        cout << "It's a Draw:\n";
+        cout << "Your Turn:\n";
+        cin >> k;
+        k--;
+        while (a[k] != 5)
+        {
+            cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
+            cin >> k;
+            k--;
+        }
+        a[k] = sy;
+        if(k==p)//1st number
+        {
+            a[q]=sc;
+            //cout<<q<<endl;
+            showTic(a);
+            cout << "It's a Draw:\n";
+        }
+        else if (k==q)
+        {
+            a[p]=sc;
+            //cout<<p<<endl;
+            showTic(a);
+            cout << "It's a Draw:\n";
+        }
+        else
+        {
+            a[q]=sc;
+            //cout<<q<<endl;
+            showTic(a);
+            cout << "It's a Draw:\n";
+        }
+        
+        //cout << "It's a Draw:\n";
     }
     else
     {
@@ -275,13 +307,13 @@ void comp2_diag(int a[], int sy, int x, int y, int z, int k, int sc)
 void comp2_diag2(int a[], int sy, int dig[], int k, int sc, int col[])
 {
     cout << "Your Turn:\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == col[0])
@@ -298,19 +330,20 @@ void comp2_diag2(int a[], int sy, int dig[], int k, int sc, int col[])
     }
     else if (k == col[3]) //different
     {
-        comp2_diag(a, sy, dig[15], dig[16], dig[17], k, sc);
+        //cout<<"this is being executed with p = "<<dig[18]<<"and q = "<<dig[19]<<"\n";
+        comp2_diag(a, sy, dig[15], dig[16], dig[17],dig[18], dig[19], k, sc);
     }
     else if (k == col[4])
     {
-        hel_comp2(a, sy, dig[18], dig[19], dig[20], dig[21], dig[22], k, sc);
+        hel_comp2(a, sy, dig[20], dig[21], dig[22], dig[23], dig[24], k, sc);
     }
     else if (k == col[5]) //different
     {
-        comp2_diag(a, sy, dig[23], dig[24], dig[25], k, sc);
+        comp2_diag(a, sy, dig[25], dig[26], dig[27],dig[28], dig[29], k, sc);
     }
     else if (k == col[6])
     {
-        hel_comp2(a, sy, dig[26], dig[27], dig[28], dig[29], dig[30], k, sc);
+        hel_comp2(a, sy, dig[30], dig[31], dig[32], dig[33], dig[34], k, sc);
     }
 }
 void comp_middle1(int a[], int sy, int b[], int k, int sc)
@@ -318,13 +351,13 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
     a[b[0]] = sc; //0
     showTic(a);
     cout << "Your Turn:\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == b[1]) //1
@@ -332,13 +365,13 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
         a[b[2]] = sc; //2
         showTic(a);
         cout << "Your Turn:\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k; 
-            k --;
+            cin >> k;
+            k--;
         }
         a[k] = sy;
         if (k == b[3]) //3
@@ -359,13 +392,13 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
         a[b[8]] = sc; //8
         showTic(a);
         cout << "Your Turn:\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k; 
-            k --;
+            cin >> k;
+            k--;
         }
         a[k] = sy;
         if (k == b[9]) //9
@@ -381,7 +414,7 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
             cout << "Computer Won\n";
         }
     }
-    else if(k==b[4])
+    else if (k == b[4])
     {
         a[b[6]] = sc; //11
         showTic(a);
@@ -394,43 +427,16 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
         cout << "It's a Draw:\n";
     }
 }
-void comp_middle2(int a[], int sy, int x, int y, int z, int k, int sc)
-{
-    a[x] = sc; //x
-    showTic(a);
-    cout << "Your Turn:\n";
-    cin >> k; 
-    k --;
-    while (a[k] != 5)
-    {
-        cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
-    }
-    a[k] = sy;
-    if (k == y) //y
-    {
-        a[z] = sc; //z
-        showTic(a);
-        cout << "It's a Draw:\n";
-    }
-    else
-    {
-        a[y] = sc; //y
-        showTic(a);
-        cout << "Computer Won\n";
-    }
-}
 void comp2_top(int a[], int sy, int dig[], int k, int sc, int col[])
 {
     cout << "Your Turn:\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == col[0])
@@ -451,28 +457,28 @@ void comp2_top(int a[], int sy, int dig[], int k, int sc, int col[])
     }
     else if (k == col[4])
     {
-        comp_middle2(a, sy, dig[20], dig[21], dig[22], k, sc);
+        comp2_diag(a, sy, dig[20], dig[21], dig[22],dig[23], dig[24], k, sc);
     }
     else if (k == col[5])
     {
-        hel_comp1(a, sy, dig[23], dig[24], dig[25], dig[26], dig[27], k, sc);
+        hel_comp1(a, sy, dig[25], dig[26], dig[27], dig[28], dig[29], k, sc);
     }
     else
     {
-        hel_comp2(a,sy,dig[28], dig[29], dig[30], dig[31], dig[32], k, sc);
+        hel_comp2(a, sy, dig[30], dig[31], dig[32], dig[33], dig[34], k, sc);
     }
 }
 void comp2(int a[], int sy)
 {
     int i, j, k, sc = 1 - sy;
     cout << "Your Turn:\n";
-    cin >> k; 
-    k --;
+    cin >> k;
+    k--;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
     }
     a[k] = sy;
     if (k == 4) //middle
@@ -480,13 +486,13 @@ void comp2(int a[], int sy)
         a[0] = sc;
         showTic(a);
         cout << "Your Turn:\n";
-        cin >> k; 
-        k --;
+        cin >> k;
+        k--;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k; 
-            k --;
+            cin >> k;
+            k--;
         }
         a[k] = sy;
         if (k == 1)
@@ -496,7 +502,7 @@ void comp2(int a[], int sy)
         }
         else if (k == 2)
         {
-            comp_middle2(a, sy, 6, 3, 5, k, sc);
+            comp2_diag(a, sy, 6, 3, 5,8,7, k, sc);
         }
         else if (k == 3)
         {
@@ -509,7 +515,7 @@ void comp2(int a[], int sy)
         }
         else if (k == 6)
         {
-            comp_middle2(a, sy, 2, 1, 7, k, sc);
+            comp2_diag(a, sy, 2, 1, 7,3,5, k, sc);
         }
         else if (k == 7)
         {
@@ -517,7 +523,7 @@ void comp2(int a[], int sy)
         }
         else
         {
-            comp_middle2(a, sy, 6, 3, 5, k, sc);
+            comp2_diag(a, sy, 6, 3, 5,7,1, k, sc);
         }
     }
     else if (k % 2) //top bottom
@@ -526,25 +532,25 @@ void comp2(int a[], int sy)
         showTic(a);
         if (k == 1)
         {
-            int dig[] = {2, 6, 3, 5, 8, 0, 8, 5, 3, 6, 0, 8, 6, 2, 5, 2, 6, 8, 0, 3, 0, 8, 7, 3, 5, 6, 2, 0, 3,5,2,6,7};
+            int dig[] = {2, 6, 3, 5, 8, 0, 8, 5, 3, 6, 0, 8, 6, 2, 5, 2, 6, 8, 0, 3, 0, 8, 7,2,5, 3, 5, 6, 2, 0, 3, 5, 2, 6, 7};
             int col[] = {0, 2, 3, 5, 6, 7, 8};
             comp2_top(a, sy, dig, k, sc, col);
         }
         else if (k == 5)
         {
-            int dig[] = {8, 0, 1, 7, 6, 2, 6, 7, 1, 0, 2, 6, 0, 8, 7, 8, 0, 6, 2, 1, 2, 6, 3, 1, 7, 0, 8, 2, 1, 7, 8,0,3};
+            int dig[] = {8, 0, 1, 7, 6, 2, 6, 7, 1, 0, 2, 6, 0, 8, 7, 8, 0, 6, 2, 1, 2, 6, 3,8,7, 1, 7, 0, 8, 2, 1, 7, 8, 0, 3};
             int col[] = {2, 8, 1, 7, 0, 3, 6};
             comp2_top(a, sy, dig, k, sc, col);
         }
         else if (k == 7)
         {
-            int dig[] = {6, 2, 5, 3, 0, 8, 0, 3, 5, 2, 8, 0, 2, 6, 3, 6, 2, 0, 8, 5, 8, 0, 1, 5, 3, 2, 6, 8, 5, 3,6,2,1};
+            int dig[] = {6, 2, 5, 3, 0, 8, 0, 3, 5, 2, 8, 0, 2, 6, 3, 6, 2, 0, 8, 5, 8, 0, 1,6,3, 5, 3, 2, 6, 8, 5, 3, 6, 2, 1};
             int col[] = {8, 6, 5, 3, 2, 1, 0};
             comp2_top(a, sy, dig, k, sc, col);
         }
         else
         {
-            int dig[] = {0, 8, 7, 1, 2, 6, 2, 1, 7, 8, 6, 2, 8, 0, 1, 0, 8, 2, 6, 7, 6, 2, 5, 7, 1, 8, 0, 6, 7, 1,0,8,5};
+            int dig[] = {0, 8, 7, 1, 2, 6, 2, 1, 7, 8, 6, 2, 8, 0, 1, 0, 8, 2, 6, 7, 6, 2, 5,0,1, 7, 1, 8, 0, 6, 7, 1, 0, 8, 5};
             int col[] = {6, 0, 7, 1, 8, 5, 2};
             comp2_top(a, sy, dig, k, sc, col);
         }
@@ -555,25 +561,25 @@ void comp2(int a[], int sy)
         showTic(a);
         if (k == 0)
         {
-            int dig[] = {2, 6, 3, 5, 8, 1, 7, 3, 5, 8, 6, 2, 1, 7, 8, 2, 6, 3, 3, 5, 7, 1, 2, 6, 2, 1, 3, 5, 2, 6, 7};
+            int dig[] = {2, 6, 3, 5, 8, 1, 7, 3, 5, 8, 6, 2, 1  , 7, 8, 2, 6, 3,8,7, 3, 5, 7, 1, 2, 6, 2, 1,8,5, 3, 5, 2, 6, 7};
             int col[] = {1, 2, 3, 5, 6, 7, 8};
             comp2_diag2(a, sy, dig, k, sc, col);
         }
         else if (k == 2)
         {
-            int dig[] = {8, 0, 1, 7, 6, 5, 3, 1, 7, 6, 0, 8, 5, 3, 6, 8, 0, 1, 1, 7, 3, 5, 8, 0, 8, 5, 1, 7, 8, 0, 3};
+            int dig[] = {8, 0, 1, 7, 6, 5, 3, 1, 7, 6, 0, 8, 5, 3, 6, 8, 0, 1,6,3, 1, 7, 3, 5, 8, 0, 8, 5,6,7, 1, 7, 8, 0, 3};
             int col[] = {5, 8, 1, 7, 0, 3, 6};
             comp2_diag2(a, sy, dig, k, sc, col);
         }
         else if (k == 6)
         {
-            int dig[] = {0, 8, 7, 1, 2, 3, 5, 7, 1, 2, 8, 0, 3, 5, 2, 0, 8, 7, 7, 1, 5, 3, 0, 8, 0, 3, 7, 1, 0, 8, 5};
+            int dig[] = {0, 8, 7, 1, 2, 3, 5, 7, 1, 2, 8, 0, 3, 5, 2, 0, 8, 7,2,5, 7, 1, 5, 3, 0, 8, 0, 3,2,1, 7, 1, 0, 8, 5};
             int col[] = {3, 0, 7, 1, 8, 5, 2};
             comp2_diag2(a, sy, dig, k, sc, col);
         }
         else if (k == 8)
         {
-            int dig[] = {6, 2, 5, 3, 0, 7, 1, 5, 3, 0, 2, 6, 7, 1, 0, 6, 2, 5, 5, 3, 1, 7, 6, 2, 6, 7, 5, 3, 6, 2, 1};
+            int dig[] = {6, 2, 5, 3, 0, 7, 1, 5, 3, 0, 2, 6, 7, 1, 0, 6, 2, 5,0,1, 5, 3, 1, 7, 6, 2, 6, 7,0,3, 5, 3, 6, 2, 1};
             int col[] = {7, 6, 5, 3, 2, 1, 0};
             comp2_diag2(a, sy, dig, k, sc, col);
         }
