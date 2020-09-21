@@ -43,11 +43,13 @@ void hel_comp1(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
     a[x] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == y)
@@ -55,11 +57,13 @@ void hel_comp1(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
         a[z] = sc;
         showTic(a);
         cout << "Your Turn\n";
-        cin >> k;
+        cin >> k; 
+        k --;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k;
+            cin >> k; 
+            k --;
         }
         a[k] = sy;
         if (k == p)
@@ -87,11 +91,13 @@ void hel_comp2(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
     a[x] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == y)
@@ -99,11 +105,13 @@ void hel_comp2(int a[], int sy, int x, int y, int z, int p, int q, int k, int sc
         a[z] = sc;
         showTic(a);
         cout << "Your Turn\n";
-        cin >> k;
+        cin >> k; 
+        k --;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k;
+            cin >> k; 
+            k --;
         }
         a[k] = sy;
         if (k == p)
@@ -132,11 +140,13 @@ void hel_comp3(int a[], int sy, int x, int y, int z, int k, int sc)
     a[x] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == y)
@@ -159,11 +169,13 @@ void comp1(int a[], int sy)
     a[0] = sc;
     showTic(a);
     cout << "Your Turn\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     switch (k)
     {
@@ -182,11 +194,13 @@ void comp1(int a[], int sy)
         a[k] = sy;
         showTic(a);
         cout << "Your Turn\n";
-        cin >> k;
+        cin >> k; 
+        k --;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k;
+            cin >> k; 
+            k --;
         }
         a[k] = sy;
         if (k == 6)
@@ -236,11 +250,13 @@ void comp2_diag(int a[], int sy, int x, int y, int z, int k, int sc)
     a[x] = sc;
     showTic(a);
     cout << "Your Turn:\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == y)
@@ -259,11 +275,13 @@ void comp2_diag(int a[], int sy, int x, int y, int z, int k, int sc)
 void comp2_diag2(int a[], int sy, int dig[], int k, int sc, int col[])
 {
     cout << "Your Turn:\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == col[0])
@@ -300,11 +318,13 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
     a[b[0]] = sc; //0
     showTic(a);
     cout << "Your Turn:\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == b[1]) //1
@@ -312,11 +332,13 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
         a[b[2]] = sc; //2
         showTic(a);
         cout << "Your Turn:\n";
-        cin >> k;
+        cin >> k; 
+        k --;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k;
+            cin >> k; 
+            k --;
         }
         a[k] = sy;
         if (k == b[3]) //3
@@ -337,11 +359,13 @@ void comp_middle1(int a[], int sy, int b[], int k, int sc)
         a[b[8]] = sc; //8
         showTic(a);
         cout << "Your Turn:\n";
-        cin >> k;
+        cin >> k; 
+        k --;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k;
+            cin >> k; 
+            k --;
         }
         a[k] = sy;
         if (k == b[9]) //9
@@ -375,11 +399,13 @@ void comp_middle2(int a[], int sy, int x, int y, int z, int k, int sc)
     a[x] = sc; //x
     showTic(a);
     cout << "Your Turn:\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == y) //y
@@ -398,11 +424,13 @@ void comp_middle2(int a[], int sy, int x, int y, int z, int k, int sc)
 void comp2_top(int a[], int sy, int dig[], int k, int sc, int col[])
 {
     cout << "Your Turn:\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == col[0])
@@ -438,11 +466,13 @@ void comp2(int a[], int sy)
 {
     int i, j, k, sc = 1 - sy;
     cout << "Your Turn:\n";
-    cin >> k;
+    cin >> k; 
+    k --;
     while (a[k] != 5)
     {
         cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-        cin >> k;
+        cin >> k; 
+        k --;
     }
     a[k] = sy;
     if (k == 4) //middle
@@ -450,11 +480,13 @@ void comp2(int a[], int sy)
         a[0] = sc;
         showTic(a);
         cout << "Your Turn:\n";
-        cin >> k;
+        cin >> k; 
+        k --;
         while (a[k] != 5)
         {
             cout << "You have entered a place which has already been filled or it is out of range. Please Enter a number that hasn't been utilized\n";
-            cin >> k;
+            cin >> k; 
+            k --;
         }
         a[k] = sy;
         if (k == 1)
@@ -555,7 +587,7 @@ void playgame()
     {
         a[i] = 5;
     }
-    cout << "Instructions: Enter numbers from 0 to 8 to insert your symbols in the designated place. Like shown below: \n";
+    cout << "Instructions: Enter numbers from 1 to 9 to insert your symbols in the designated place. Like shown below: \n";
     cout << "-------------\n";
     for (int i = 0; i < 3; i++)
     {
@@ -563,7 +595,7 @@ void playgame()
         for (int j = 0; j < 3; j++)
         {
             cout << "|";
-            cout << " " << i * 3 + j << " ";
+            cout << " " << i * 3 + j + 1 << " ";
         }
         cout << "|\n";
         cout << "-------------\n";
