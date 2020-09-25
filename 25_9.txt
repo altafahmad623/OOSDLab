@@ -1,0 +1,10 @@
+
+We want to implement precision mathematics. For this, write a class Number, 
+which takes as input an arbitrarily large integer as a string of numbers via a 
+member function get_num, and may display it via a member function show_num.
+It also has a member function add for adding such two numbers.
+2) As in the previous problem, write a function for multiplication. 
+3) Overload the + operator for the class Number.
+4) Overload the * operator for the class Number.
+ 
+The programs should be named prog2.cpp, prog3.cpp, prog4.cpp respectively. Use the main function for a demo of the functions.

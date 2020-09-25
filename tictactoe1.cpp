@@ -658,7 +658,6 @@ void playgame() // The main game is situated in this function. Both the cases wh
     cout << "-------------\n";
     for (int i = 0; i < 3; i++)
     {
-
         for (int j = 0; j < 3; j++)
         {
             cout << "|";
