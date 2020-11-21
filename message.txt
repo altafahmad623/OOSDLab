@@ -1,0 +1,84 @@
+#include<iostream>
+#include<string.h>
+#include<cstring>
+using namespace std;
+class Number{
+  string s; //The member variable of Number, which is a large string of positive integers
+  public:
+    void get_num(string input){ 
+      s = input; //Inputs the string of the object
+    }
+    void show_num(){ //Displays large number
+      while(*s.begin() == '0')
+        s.erase(s.begin());
+      if(s.size() == 0)
+        cout<<0<<endl;
+      else 
+        cout<<s<<endl;
+    }
+    void add(Number s1, Number s2){
+     // cout<<"The addition of the two numbers is:"<<endl;
+      string a = s1.s; //Used placeholder strings for convenience
+      string b = s2.s; //Used placeholder strings for convenience
+      string addition = ""; //Stores the added string
+      if(b.length() > a.length())
+        swap(a,b);
+      a.insert(a.begin(), '0'); //Inserts 0 to the beginning to make string lengths same.
+      while(b.length() != a.length()){
+        b.insert(b.begin(), '0');
+      }
+      int excess = 0; //Excess will store the 'carry over' portion
+      for(int i = a.length()-1; i>=0; i--){
+        int digitadd = b[i] - '0' + a[i] - '0' + excess; //Stores the added digit modulo 10
+        if(digitadd >= 7){
+          excess = 1;
+          digitadd %= 7;
+        }
+        else
+          excess = 0;
+        addition.insert(addition.begin(), digitadd + '0'); //Appends the addition to the addition
+      }
+      s = addition;
+    }
+     void mult(Number s1, Number s2){
+      this->s = "0";
+      cout<<"The multiplication of the two numbers is:"<<endl;
+      string a = s1.s; //Used placeholder strings for convenience
+      string b = s2.s; //Used placeholder strings for convenience
+      string multiplication = ""; //Stores the temporary multiplied string
+      Number temp;
+      if(b.length() > a.length())
+        swap(a,b);
+      a.insert(a.begin(), '0'); //Inserts 0 to the beginning to make string lengths same.
+      while(b.length() != a.length()){
+        b.insert(b.begin(), '0');
+      }
+      int excess = 0; //Excess will store the 'carry over' portion
+      for(int j = b.length()-1; j>=0; j--){
+            for(int i = a.length()-1; i>=0; i--){
+                int digitadd = (b[j] - '0')*(a[i] - '0') + excess; //Stores the added digit modulo 10
+                excess = digitadd/7;
+                digitadd %= 7;
+            // cout<<excess<<" "<<digitadd<<endl;
+                multiplication.insert(multiplication.begin(), digitadd + '0'); //Appends the digit to the temporary multiplication string
+            }
+            int extrazero =  (b.length()-1)-j;
+            for(int i = 0; i<extrazero; i++)
+                multiplication += '0';
+           // cout<<multiplication<<endl;
+            temp.get_num(multiplication);
+            add(*this,temp); //Adds this string to the final multiplication string
+            multiplication = ""; //Resets it
+        }
+    }
+};
+int main(){
+    Number ob1,ob2,multob;
+    //Enter the inputs here
+    string s1 = "65";
+    string s2 = "65";
+    ob1.get_num(s1);
+    ob2.get_num(s2);
+    multob.mult(ob1,ob2);
+    multob.show_num();
+}

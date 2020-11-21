@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+#define lli long long
+void printOrder(long long ar[], int n, int ind)
+{
+    int i;
+    if(n==0)
+    {
+        for(i=0;i<ind;i++)
+        {
+            cout<<ar[i]<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+
+    for(i=1;i<=n;i++)
+    {
+        ar[ind]=i;
+        printOrder(ar, n-i, ind+1);
+    }
+}
+
+int main()
+{
+    lli n;
+    cin>>n;
+    lli ar[n+1];
+    printOrder(ar, n, 0);
+}

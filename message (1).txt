@@ -1,0 +1,143 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+    int data;
+    node *left;
+    node *right;
+    node *par;
+    int height;
+};
+
+class minHeap
+{
+    // private:
+    public:
+    node *Root;
+
+    node *newNode(int da, node *parent)
+    {
+        node *Node = new node;
+        Node->data = da;
+        Node->left = NULL;
+        Node->right = NULL;
+        Node->par = parent;
+        Node->height = 1;
+    }
+
+    int height(node *nd)
+    {
+        if(nd==NULL)
+        {
+            return 0;
+        }
+        return nd->height;
+    }
+    int updateHeight(node *nd)
+    {
+        if(nd==NULL)
+        {
+            return 0;
+        }
+        else
+        {
+            nd->height = min(height(nd->left), height(nd->right))+1;
+        }
+    }
+    node * insert_helper(int data, node *root)
+    {
+        if(height(root->left) < height(root->right))
+        {
+            if(root->left == NULL)
+            {
+                root->left = newNode(data, root);
+                updateHeight(root);
+                return root->left;
+            }
+            else
+            {
+                node *tmp = insert_helper(data, root->left);
+                updateHeight(tmp);
+                return tmp;
+            }
+        }
+        else
+        {
+            if(root->right == NULL)
+            {
+                root->right = newNode(data, root);
+                updateHeight(root);
+                return root->right;
+            }
+            else
+            {
+                node *tmp = insert_helper(data, root->right);
+                updateHeight(tmp);
+                return tmp;
+            }
+        }
+    }
+
+    void balance(node *nd)
+    {
+        if(nd == Root)
+        {
+            return;
+        }
+        if(nd->par->data < nd->data)
+        {
+            return;
+        }
+
+        int tmp = nd->par->data;
+        nd->par->data = nd->data;
+        nd->data = tmp;
+
+        balance(nd->par);
+    }
+
+    public:
+    minHeap()
+    {
+        Root = NULL;
+    }
+
+    void insert(int data)
+    {
+        cout<<"Inserting "<<data<<" into the heap"<<endl;
+        
+        if(Root == NULL)
+        {
+            Root = newNode(data, NULL);
+        }
+        else
+        {
+            node *insertedNode = insert_helper(data, Root);
+            balance(insertedNode);
+        }
+    }
+
+    // void deleteMin()
+    // {
+    //     cout<<"Min element "<<Root->data<<" deleted\n";
+        
+    //     if()
+    // }
+};
+
+int main()
+{
+    minHeap heap;
+    heap.insert(50);
+    cout<<heap.Root->data<<endl;
+    heap.insert(20);
+    cout<<heap.Root->data<<endl;
+    cout<<heap.Root->right->data<<endl;
+    heap.insert(10);
+    cout<<heap.Root->data<<endl;
+    cout<<heap.Root->right->data<<endl;
+    cout<<heap.Root->left->data<<endl;
+
+
+}

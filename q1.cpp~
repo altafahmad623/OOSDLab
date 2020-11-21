@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+int prodtable[7][7][2];
+int add(int x, int y)
+{
+    if (x > y)
+        swap(x, y);
+    int z = 0;
+    int carry = 0;
+    int prod = 1;
+    while (y)
+    {
+        int d1 = x % 10;
+        int d2 = y % 10;
+        int r = d1 + d2 + carry;
+        z = z + prod * (r % 7);
+        carry = r / 7;
+        prod *= 10;
+        x /= 10;
+        y /= 10;
+    }
+    if (carry)
+        z += carry * prod;
+    return z;
+}
+
+int mul(int x, int y)
+{
+    int resfull = 0;
+    int prod = 1;
+    if (x > y)
+        swap(x, y);
+
+    while (x)
+    {
+        int res = 0;
+        int cy = y;
+        int cp = prod;
+        int d1 = x % 10;
+        x = x / 10;
+        int carry = 0;
+        while (cy)
+        {
+            int d2 = cy % 10;
+            cy = cy / 10;
+            int cpa = prodtable[d1][d2][1] + carry;
+            carry = prodtable[d1][d2][0] + cpa / 7;
+            res += cp * (cpa % 7);
+            cp = cp * 10;
+        }
+        res += (carry)*cp;
+
+        resfull = add(resfull, res);
+        prod = prod * 10;
+    }
+    return resfull;
+}
+
+int main()
+{
+    for (int i = 1; i < 7; i++)
+    {
+        for (int j = 1; j < 7; j++)
+        {
+
+            int res = add(prodtable[i][j - 1][0] * 10 + prodtable[i][j - 1][1], i);
+            prodtable[i][j][0] = res / 10;
+            prodtable[i][j][1] = res % 10;
+        }
+    }
+
+    int x, y;
+    cin >> x >> y;
+    int z = mul(x, y);
+    cout << z;
+}
