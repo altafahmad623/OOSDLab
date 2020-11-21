@@ -1,0 +1,357 @@
+#include <iostream>
+using namespace std;
+int max(int a, int b)
+{
+    if (a >= b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
+}
+struct Node
+{
+    int val;
+    Node *left;
+    Node *right;
+};
+struct Link // single node or link of the list
+{
+    int data;
+    Link *next;
+    Link *prev;
+};
+
+class Linklist // a list of links
+{
+public:
+    Link *head; // pointer to the head link
+    Link *tail; // pointer to the tail link
+
+
+    Linklist() // zero argument constructor
+    {
+        head = NULL;
+        tail = NULL;
+        head = tail;
+    }
+
+    void additem(int d); // adds a data item to the linked list (in front)
+    void addend(int d);  // adds a data item to the linked list (at the back)
+    void deltop();       // deletes the first data item
+    void delend();       // deletes the last data item
+    void display();
+};
+class AVLtree
+{
+private:
+    Node *root;
+
+public:
+    AVLtree()
+    {
+        root = NULL;
+    }
+    Node *insertItem(Node *r, int a);
+    void sort(Node *r);
+    int height(Node *r);
+    int htDiff(Node *r);
+    Node *rr_rotate(Node *r);
+    Node *rl_rotate(Node *r);
+    Node *ll_rotate(Node *r);
+    Node *lr_rotate(Node *r);
+    Node *avl_balance(Node *r);
+    Node *delete_node(Node *r, int k);
+    Node* find(Node *r, int k);
+    void displ(Node *r);
+};
+Node *rut;
+Node* AVLtree::find(Node* r,int k)
+{
+    if(r->val == k)
+    {
+        return r;
+    }
+    else if( r->val >k)
+    {
+        find(r->left,k);
+    }
+    else
+    {
+        find(r->right,k);
+    }
+    
+}
+Node *minValueNode(Node *node)
+{
+    Node *current = node;
+    /* loop down to find the leftmost leaf */
+    while (current->left != NULL)
+    {
+        current = current->left;
+    }
+    return current;
+}
+void AVLtree::sort(Node *r)
+{
+    if (r == NULL)
+    {
+        return;
+    }
+    sort(r->left);
+    cout << r->val << " ";
+    sort(r->right);
+}
+int AVLtree::height(Node *r)
+{
+    int ht = 0;
+    if (r != NULL)
+    {
+        ht = max(height(r->left), height(r->right)) + 1;
+    }
+    return ht;
+}
+int AVLtree::htDiff(Node *r)
+{
+    if (r == NULL)
+    {
+        return 0;
+    }
+    return (height(r->left) - height(r->right));
+}
+Node *AVLtree::ll_rotate(Node *r)
+{
+    Node *temp;
+    temp = r->left;
+    r->left = temp->right;
+    temp->right = r;
+    return temp;
+}
+Node *AVLtree::lr_rotate(Node *r)
+{
+    Node *temp;
+    temp = r->left;
+    r->left = rr_rotate(temp);
+    return (ll_rotate(r));
+}
+Node *AVLtree::rr_rotate(Node *r)
+{
+    Node *temp;
+    temp = r->right;
+    r->right = temp->left;
+    temp->left = r;
+    return temp;
+}
+Node *AVLtree::rl_rotate(Node *r)
+{
+    Node *temp;
+    temp = r->right;
+    r->right = ll_rotate(temp);
+    return rr_rotate(r);
+}
+Node *AVLtree::avl_balance(Node *r)
+{
+    if (htDiff(r) > 1)
+    {
+        if (htDiff(r->left) > 0)
+            r = ll_rotate(r);
+        else
+        {
+            r = lr_rotate(r);
+        }
+    }
+    else if (htDiff(r) < -1)
+    {
+        if (htDiff(r->right) > 0)
+            r = rl_rotate(r);
+        else
+        {
+            r = rr_rotate(r);
+        }
+    }
+    return r;
+}
+Node *AVLtree::insertItem(Node *r, int a)
+{
+    if (r == NULL)
+    {
+        r = new Node;
+        r->val = a;
+        r->left = NULL;
+        r->right = NULL;
+        return r;
+    }
+    else if (r->val > a)
+    {
+        r->left = insertItem(r->left, a);
+        r = avl_balance(r);
+    }
+    else
+    {
+        r->right = insertItem(r->right, a);
+        r = avl_balance(r);
+    }
+    return r;
+}
+Node *AVLtree::delete_node(Node *r, int k)
+{
+    if (r == NULL)
+    {
+        return r;
+    }
+    if (k > r->val)
+    {
+        r = delete_node(r->right, k);
+    }
+    else if (k < r->val)
+    {
+        r = delete_node(r->left, k);
+    }
+    else //it will delete this node
+    {
+        if ((r->left == NULL) || (r->right == NULL))
+        {
+            Node *temp;
+            if (r->left == NULL)
+            {
+                temp = r->right;
+            }
+            else
+            {
+                temp = r->left;
+            }
+            if (temp == NULL)
+            {
+                temp = r;
+                r = NULL;
+            }
+            else
+            {
+                *r = *temp;
+                free(temp);
+            }
+        }
+        else
+        {
+            Node *temp = minValueNode(r->right);
+            r->val = temp->val;
+            r->right = delete_node(root->right, temp->val);
+        }
+    }
+    if (r == NULL)
+    {
+        return r;
+    }
+    int balance = htDiff(r);
+    if ((balance > 1) && (htDiff(r->left) >= 0))
+    {
+        return ll_rotate(r);
+    }
+    if ((balance > 1) && (htDiff(r->left) < 0))
+    {
+        //r->left = rr_rotate(r->left);
+        return lr_rotate(r);
+    }
+    if ((balance < -1) && (htDiff(r->right) <= 0))
+    {
+        return rr_rotate(r);
+    }
+    if ((balance < -1) && (htDiff(r->right) > 0))
+    {
+        //r->right= ll_rotate(r->right);
+        return rl_rotate(r);
+    }
+    return r;
+}
+void Linklist::additem(int d) // added a new node in front of the list
+{
+    Link *newlink = new Link;
+    newlink->data = d;
+    newlink->prev = NULL;
+    newlink->next = head;
+    if (head != NULL)
+    {
+        head->prev = newlink;
+    }
+    head = newlink;
+    if (newlink->next != NULL and (newlink->next)->next == NULL) // the first instance where the head and tail separate out
+    {
+        tail = newlink->next;
+    }
+}
+void Linklist::addend(int d)
+{
+    Link *newlink = new Link;
+    newlink->data = d;
+    if (tail != NULL)
+    {
+        tail->next = newlink;
+    }
+    newlink->prev = tail; // initially attaches new node after tail
+    tail = newlink; // tail becomes the last node once again
+    tail->next = NULL;
+}
+void Linklist::display()
+{
+
+Link* current = head;
+while(current != NULL)
+{
+	cout << current->data << endl;
+	current = current->next;
+}
+
+//cout << endl << tail->data << endl;
+
+}
+void AVLtree::displ(Node *r)
+{
+
+    Linklist li;
+    int data,i,j;
+    li.additem(r->val);
+    Node* init = r;
+    Link * current = li.head;
+
+    while(current->data != -111)
+    {
+        data = current->data;
+        init = find(r,data);
+        if(init->left == NULL)
+        {
+            li.addend(-111);
+        }
+        else
+        {
+		cout<<init->left->val<<" ";
+ 
+            li.addend(init->left->val);
+        }
+        if(init->right == NULL)
+        {
+            li.addend(-111);
+        }
+        else
+        {
+            li.addend(init->right->val);
+        }
+	current = current->next;
+    }
+    li.display();
+}
+int main()
+{
+    AVLtree avl;
+    int n = 7;
+    int arr[] = {12, 3, 4, 1, 8, 19, 53};
+    for (int i = 0; i < 7; i++)
+    {
+        rut = avl.insertItem(rut, arr[i]);
+    }
+    //rut = avl.delete_node(rut,4);
+    avl.sort(rut);
+cout<<"baba";
+    avl.displ(rut);
+}

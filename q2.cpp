@@ -1,0 +1,32 @@
+#include<iostream> 
+#define EPSILON 0.001 
+using namespace std; 
+double func(double x,double k) 
+{ 
+	return x*x*x - k; 
+} 
+
+double derivFunc(double x) 
+{ 
+	return 3*x*x; 
+} 
+
+void cubeRoot(double x,double k) 
+{ 
+	double h = func(x,k) / derivFunc(x); 
+	while (abs(h) >= EPSILON) 
+	{ 
+		h = func(x,k)/derivFunc(x); 
+		x = x - h; 
+	} 
+
+	cout << "The value of the root is : " << x; 
+} 
+int main() 
+{ 
+	double x0 ; 
+	cin>>x0;
+	cubeRoot(x0,x0); 
+	return 0; 
+} 
+

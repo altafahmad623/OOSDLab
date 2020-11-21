@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+
+void printOrder(long long ar[], int n, int ind)
+{
+    if(n==0)
+    {
+        for(int i=0;i<ind;i++)
+        {
+            cout<<ar[i]<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+
+    for(int i=1;i<=n;i++)
+    {
+        ar[ind]=i;
+        printOrder(ar, n-i, ind+1);
+    }
+}
+
+int main()
+{
+    long long int n;
+    cin>>n;
+    long long int ar[n+1];
+    printOrder(ar, n, 0);
+}
