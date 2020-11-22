@@ -1,0 +1,10 @@
+val :: Int
+val = 25
+
+mult2 :: Int -> Int
+
+mult2 x = 2*x
+
+main = do
+	print $ val
+	print $ mult2 x
