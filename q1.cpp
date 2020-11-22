@@ -1,7 +1,7 @@
 
 
         #include <iostream>
-         
+
         using namespace std;
          
         int prodtable[7][7][2]; 
